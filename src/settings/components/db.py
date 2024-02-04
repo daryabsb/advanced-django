@@ -1,14 +1,8 @@
-# To use Neon with Django, you have to create a Project on Neon and specify the project connection settings in your settings.py in the same way as for standalone Postgres.
 from src.settings.components.env import config
 import dj_database_url
 
 DATABASE_URL = config("B1_DATABASE_URL", default=None)
 HOST_ENV = config('HOST_ENV', default='office')
-
-# if DATABASE_URL is None or HOST_ENV == 'office':
-#     DATABASE_URL = "postgres://postgres:postgres2019@172.16.10.6/aronneon"
-# else:
-#     DATABASE_URL = "postgres://postgres:postgres2019@188.72.18.2/aronneon"
 
 if DATABASE_URL is not None:
     DATABASES = {
@@ -19,11 +13,11 @@ if DATABASE_URL is not None:
         )
     }
 else:
-    DATABASE_NAME = config("DATABASE_NAME", default='aronneon')
-    DATABASE_USER = config("DATABASE_USER", default='postgres')
-    DATABASE_PASSWORD = config("DATABASE_PASSWORD", default='postgres')
-    DATABASE_HOST = config("DATABASE_HOST", default='127.0.0.1')
-    DATABASE_PORT = config("DATABASE_PORT", default=5432)
+    DATABASE_NAME = config("DATABASE_NAME")
+    DATABASE_USER = config("DATABASE_USER")
+    DATABASE_PASSWORD = config("DATABASE_PASSWORD")
+    DATABASE_HOST = config("DATABASE_HOST")
+    DATABASE_PORT = config("DATABASE_PORT")
 
     DATABASES = {
         'default': {
